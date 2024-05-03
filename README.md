@@ -1,26 +1,23 @@
+# SILO Docker Implementation
 
-![CI status](https://github.com/msmobility/silo/workflows/Java%20CI/badge.svg)
-[![Cloudsmith Deployment](https://github.com/msmobility/silo/actions/workflows/deployment.yml/badge.svg?branch=master)](https://github.com/msmobility/silo/actions/workflows/deployment.yml)
-[![Hosted By: Cloudsmith](https://img.shields.io/badge/OSS%20hosting%20by-cloudsmith-blue?logo=cloudsmith&style=for-the-badge)](https://cloudsmith.com)
+Forked from: https://github.com/msmobility/silo
 
-Package repository hosting is graciously provided by  [Cloudsmith](https://cloudsmith.com).
-Cloudsmith is the only fully hosted, cloud-native, universal package management solution, that
-enables your organization to create, store and share packages in any format, to any place, with total
-confidence.
+## Setting up a new location
+Use Maryland use case as a template and file structure example. \
+...
 
+## Edit .properties
+- `base.directory`: path to scenario from within container, e.g. `./data/scenarios/annapolis/`
 
-# siloCode
-SILO Model Java Code
+## Edit docker-compose
+- `PROPERTIES_FILE`: .properties filepath from within container, e.g. `/opt/silo/data/scenarios/annapolis/javaFiles/siloMatsim_multiYear.properties`
+- `CONFIG_FILE`: config.xml filepath from within container, e.g. `/opt/silo/data/scenarios/annapolis/matsim_input/config.xml`
+- `USE_CASE`: name of the use case directory, e.g. maryland. Requires rebuilding image.
+- `source`: local directory for input data, e.g. `${PWD}/useCases/maryland/test`
 
-A high-level overview of the SILO model is provided at www.silo.zone. Please see the [wiki](https://wiki.tum.de/display/msmmodels/SILO) for the technical documentation.
+## Build and run
+    docker compose build
+    docker compose up
 
-Load into eclipse
-
-A possibility is
-
-(1) check out git as normal (e.g. on command line)
-
-(2) in eclipse: import --> Maven --> existing maven projects --> browse to location of local git repository --> import
-
------
-
+## Outputs
+Outputs can be found within generated `scenOutput` file within your scenario.

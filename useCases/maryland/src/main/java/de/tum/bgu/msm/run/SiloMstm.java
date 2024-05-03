@@ -22,11 +22,13 @@ public class SiloMstm {
 
     public static void main(String[] args) {
 
-        Properties properties = SiloUtil.siloInitialization(args[0]);
+        String propertiesPath = System.getenv("PROPERTIES_FILE");
+        Properties properties = SiloUtil.siloInitialization(propertiesPath);
 
         Config config = null;
-        if (args.length > 1 && args[1] != null) {
-            config = ConfigUtils.loadConfig(args[1]);
+        String configPath = System.getenv("CONFIG_FILE");
+        if (configPath != null && !configPath.isEmpty()) {
+            config = ConfigUtils.loadConfig(configPath);
         }
         logger.info("Started SILO land use model for the Maryland Statewide Model Area");
         DataContainer dataContainer = DataBuilder.buildDataContainer(properties, config);

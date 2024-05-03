@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  silo:
+    build:
+      context: .
+      args:
+        USE_CASE: maryland
+    command:
+      - config.xml
+      - --config:controler.lastIteration
+      - "10"
+    environment:
+      SILO_OUTPUT_OVERWRITE: "true"
+      PROPERTIES_FILE: /opt/silo/data/scenarios/annapolis/javaFiles/siloMatsim.properties
+      CONFIG_FILE: /opt/silo/data/scenarios/annapolis/matsim_input/config.xml
+    volumes:
+      - type: bind
+        source: ${PWD}/useCases/maryland/test
+        target: /opt/silo/data
